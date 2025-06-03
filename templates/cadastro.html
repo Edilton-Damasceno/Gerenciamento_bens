@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tela de cadastro</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/cadastro.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/flash_style.css') }}">
+    </head>
+    <body>
+
+        <div class="cabecalho">
+            <a href="/cadastro">Transferência</a>
+            <a href="/consulta">Consulta</a>
+        </div>
+
+        <a href="#" id="menuIcon" data-form-id="menu" onclick="mostrarConteudo(this); return false;">
+            <img src="{{ url_for('static', filename='menu.png') }}" alt="Minha Imagem" class="menu" width="30" height="20">
+        </a>
+
+        <div id="div-flash">
+            {% block content %}
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                  {% if messages %}
+                    {% for category, message in messages %}
+                      <div class="base-alert {{ category }}" role="alert">
+                        {{ message  | safe }}
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                {% endwith %}
+            {% endblock %}
+        </div>
+
+        <div class="conteudo-wrapper">
+            <div class="menu-lateral">
+                <a href="#" data-form-id="cadastro" onclick="mostrarConteudo(this); return false;">Transferência</a>
+                <a href="#" data-form-id="cadastro_dois" onclick="mostrarConteudo(this); return false;">Transferência em Lote</a>
+                <a href="#" data-form-id="cadastro_tres" onclick="mostrarConteudo(this); return false;">Cadastro de Modelo</a>
+            </div>
+
+            <!-- PARTE ONDE CRIA NOS CAMPOS NO MENU -->
+
+            <div class="conteudo-principal">
+
+                <div id="cadastro" class="conteudo-escondido formulario-padrao">
+                    <div class="form-container">
+                    <br>
+                        <h3 class="form-title">Transferir bem móvel</h3>
+                        <br>
+                        <form method="POST" action = "http://localhost:9090/cadastro" id="formPatrimonio" class="form-content">
+
+                            <div class="text-all">Descrição:</div>
+                            <input type="hidden" name="form_name" value="form_cadastro">
+                            <div class="patrimonio-group form-group">
+                                <label for="patrimonio">Patrimônio:</label>
+                                <input type="text" id="patrimonio" name="patrimonio" autocomplete="off" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="modelo">Modelo:</label>
+                                <input type="text" id="modelo-escolhido" name="modelo" list="modelo" autocomplete="off" required>
+                                <datalist id="modelo"></datalist>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="numeroSerie">Número de Série:</label>
+                                <input type="text" id="numeroSerie" name="numeroSerie" autocomplete="off">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="imei1">Imei 1:</label>
+                                <input type="text" id="imei1" name="imei1" autocomplete="off">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="imei2">Imei 2:</label>
+                                <input type="text" id="imei2" name="imei2" autocomplete="off">
+                            </div>
+
+                            <div class="text-all">Destino da Transferência:</div>
+
+                            <div class="form-group">
+                                <label for="campo-busca">Siape / Setor:</label>
+                                <input type="text" id="campo-busca-escolhido" name="campo-busca" list="campo-busca" autocomplete="off" required>
+                                <datalist id="campo-busca"></datalist>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="estado">Estado do Bem:</label>
+                                <select id="estado" name="estado" required>
+                                    <option value="Bom">Bom</option>
+                                    <option value="Regular">Regular</option>
+                                    <option value="Péssimo">Péssimo</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="localizacao">Localização:</label>
+                                <select id="localizacao" name="localizacao" required>
+                                    <option value="Deposito Comercio">Depósito Comércio</option>
+                                    <option value="Deposito Bacen">Depósito Bacen</option>
+                                    <option value="SSI Comercio">Sala SSI Comércio</option>
+                                    <option value="SSI Bacen">Sala SSI Bacen</option>
+                                    <option value="Bacen">Bacen</option>
+                                    <option value="Comercio">Comércio</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="defeito">Defeito:</label>
+                                <input type="text" id="defeito" name="defeito" autocomplete="off">
+                            </div>
+
+                            <div class="observacoes-group form-group">
+                                <label for="observacoes">Observações:</label>
+                                <textarea id="observacoes" name="observacoes" rows="1"></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit">Adicionar</button>
+                        </form>
+                        <br>
+                        <form method="POST" id="formFinalizar" class="form-content">
+                            <input type="hidden" name="form_name" value="form_cadastro_finalizar">
+                            <button type="submit" class="btn-finalizar">Finalizar Transferência</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="cadastro_dois" class="conteudo-escondido formulario-padrao">
+                    <div class="form-container">
+                    <br>
+                        <h3 class="form-title">Transferência em Lote</h3>
+                        <br>
+                        <form method="POST" action = "http://localhost:9090/cadastro" id="formPatrimonio_lote" class="form-content" enctype = "multipart/form-data">
+                            <div class="text-all">Upload de Arquivo:</div>
+                            <input type="hidden" name="form_name" value="form_cadastro_lote">
+                            <input type = "file" name = "file" />
+                            <button type="submit" class="btn-submit">Enviar</button>
+                        </form>
+                        <br>
+                        <form method="POST" id="formFinalizar_2" class="form-content">
+                            <input type="hidden" name="form_name" value="form_cadastro_finalizar">
+                            <button type="submit" class="btn-finalizar">Finalizar Transferência</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="cadastro_tres" class="conteudo-escondido formulario-padrao">
+                    <div class="form-container">
+                    <br>
+                        <h3 class="form-title">Cadastro de Modelo</h3>
+                        <br>
+                        <form method="POST" action = "http://localhost:9090/cadastro" id="formPatrimonio_modelo" class="form-content" enctype = "multipart/form-data">
+                            <input type="hidden" name="form_name" value="form_cadastro_modelo">
+
+                            <div class="form-group">
+                                <label for="cadastro_modelo">Modelo:</label>
+                                <input type="text" id="cadastro_modelo" name="cadastro_modelo">
+                            </div>
+                            <button type="submit" class="btn-submit">Cadastrar</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="log_transferencia" class="formulario-padrao">
+                <div class="form-container">
+                <br>
+                    <br>
+                    <h3 class="form-title">Transferências em espera:</h3>
+                    <br>
+                    <table id="transferenciaTable">
+                        <thead>
+                            <tr>
+                                <th>Patrimonio</th>
+                                <th>Modelo</th>
+                                <th>Nome</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Aqui serão inseridos os dados do banco -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+             <!--  <div class="menu-lateral-direito"></div> -->
+            <div id="menu" class="menu-lateral-direito conteudo-escondido">
+                <a href="/alterar_senha">Alterar Senha</a>
+                <a href="/adicionar_usuario">Adicionar Usuário</a>
+            </div>
+        </div>
+    <script src="{{ url_for('static', filename='script/script_menu.js') }}"></script>
+    <script src="{{ url_for('static', filename='script/script_cadastro.js') }}"></script>
+</body>
+</html>

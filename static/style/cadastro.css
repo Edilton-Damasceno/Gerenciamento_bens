@@ -1,0 +1,184 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+.cabecalho {
+    background-color: #007bff;
+    padding: 15px;
+    font-family: verdana;
+}
+.cabecalho a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+}
+.cabecalho a:hover {
+    background-color: white;
+    color: #007bff;
+}
+.conteudo-wrapper {
+    display: flex;
+    flex: 1;
+}
+
+.menu-lateral {
+    width: 200px;
+    background-color: #f5f5f5;
+    border-right: 1px solid #e3e3e3;
+    padding: 10px;
+    font-family: verdana;
+}
+.menu-lateral a {
+    display: block;
+    padding: 10px;
+    color: #8d8d8d;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+.menu-lateral a:hover {
+    background-color: #e7e7e7;
+}
+
+.menu-lateral-direito {
+    width: 20%;
+    background-color: #f5f5f5;
+    border-right: 1px solid #e3e3e3;
+    padding: 10px;
+    font-family: verdana;
+}
+.menu-lateral-direito a {
+    display: block;
+    padding: 10px;
+    color: #8d8d8d;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+.menu-lateral-direito a:hover {
+    background-color: #e7e7e7;
+}
+
+.conteudo-principal{
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+.conteudo-escondido {
+    display: none;
+}
+/* Estilos do formulário e do botão */
+.form-container {
+    max-width: 1000px;
+    border: none;
+    border-radius: 0;
+}
+.form-title {
+    text-align: left;
+    margin-bottom: 20px;
+    font-family: verdana;
+}
+.form-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+.form-group {
+    margin-bottom: 10px;
+    position: relative;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+}
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size : medium;
+}
+
+.patrimonio-group {
+    grid-column: 1 / 3;
+}
+.observacoes-group {
+    grid-column: 2 / 4;
+    text-align: center;
+}
+.text-all {
+    grid-column: 1 / 4;
+    font-size: large;
+    font-family: monospace;
+    border-bottom: ridge;
+}
+.btn-finalizar{
+     grid-column: 1 / 2;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+.btn-submit {
+    grid-column: 1 / 2;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    border-color: #007bff;
+}
+.btn-submit:hover {
+    background-color: #0056b3;
+}
+/* Estilos adicionais para telas menores */
+/* Diz ao navegador para aplicar as regras CSS apenas quando a largura da tela for no máximo 800 pixels. */
+@media (max-width: 800px) {
+    .form-content {
+        grid-template-columns: 1fr;
+        grid-gap: 20px;
+    }
+    .observacoes-group,
+    .btn-submit {
+        grid-column: 1;
+    }
+}
+
+.opcao {
+    border: ridge;
+}
+.menu{
+    position: fixed; /* Posicionamento fixo para manter a posição na tela */
+    top: 5px; /* Espaçamento do topo */
+    right: 15px; /* Espaçamento da direita */
+    z-index: 10000; /* Garanta que a mensagem fique acima de outros elementos */
+    padding: 10px;
+}
+
+#transferenciaTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#transferenciaTable th, #transferenciaTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#transferenciaTable th {
+    background-color: #007bff;
+    color: white;
+}

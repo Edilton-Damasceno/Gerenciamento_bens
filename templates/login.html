@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/flash_style.css') }}">
+
+</head>
+<body>
+    <h1>Login</h1>
+
+    <form id="meu-form" action = "http://localhost:9090/login" method="POST" enctype = "multipart/form-data">
+
+        <label class = "negri" for="usuario_rede">Usuário de Rede:</label>
+        <input type="text" id="usuario_rede" name="usuario_rede" required>
+
+        <label class = "negri" for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" required>
+
+        <input id= "btn_enviar" type="submit" value="Entrar">
+
+        {% block content %}
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="base-alert {{ category }}" role="alert">
+                    {{ message | safe }}
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+        {% endblock %}
+
+    </form>
+    <script src="{{ url_for('static', filename='script/script_menu.js') }}"></script>
+</body>
+</html>

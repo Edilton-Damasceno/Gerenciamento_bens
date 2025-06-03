@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tela de consulta</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/consulta.css') }}">
+
+    </head>
+    <body>
+
+        <div class="cabecalho">
+            <a href="/cadastro">Transferência</a>
+            <a href="/consulta">Consulta</a>
+        </div>
+
+        <a href="#" id="menuIcon" data-form-id="menu" onclick="mostrarConteudo(this); return false;">
+            <img src="{{ url_for('static', filename='menu.png') }}" alt="Minha Imagem" class="menu" width="30" height="20">
+        </a>
+
+        <div id="div-flash">
+            {% block content %}
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                  {% if messages %}
+                    {% for category, message in messages %}
+                      <div class="base-alert {{ category }}" role="alert">
+                        {{ message  | safe }}
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                {% endwith %}
+            {% endblock %}
+        </div>
+
+        <div class="conteudo-wrapper">
+            <div class="menu-lateral">
+                <a href="#" data-form-id="consulta" onclick="mostrarConteudo(this); return false;">Consulta</a>
+                <a href="#" data-form-id="log_transferencia" onclick="mostrarConteudo(this); return false;">Log de Transferencias</a>
+            </div>
+
+            <!-- PARTE ONDE CRIA NOS CAMPOS NO MENU -->
+
+            <div class="conteudo-principal">
+                <div id="consulta" class="conteudo-escondido formulario-padrao">
+                    <div class="form-container">
+                    <br>
+                        <h3 class="form-title">Consulta:</h3>
+                        <br>
+                        <input type="text" id="filterInput" placeholder="Digite para filtrar...">
+                        <br>
+                        <br>
+                        <table id="patrimonioTable">
+                            <thead>
+                                <tr>
+                                    <th>Patrimonio</th>
+                                    <th>Modelo</th>
+                                    <th>Número de Série</th>
+                                    <th>Imei Um</th>
+                                    <th>Imei Dois</th>
+                                    <th>Siape / Setor</th>
+                                    <th>Estado</th>
+                                    <th>Localizção</th>
+                                    <th>Defeito</th>
+                                    <th>Observação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Aqui serão inseridos os dados do banco -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="log_transferencia" class="conteudo-escondido formulario-padrao">
+                    <div class="form-container">
+                    <br>
+                        <h3 class="form-title">Registro de trânferencias:</h3>
+                        <br>
+                        <input type="text" id="filterInput_2" placeholder="Digite para filtrar...">
+                        <br>
+                        <br>
+                        <table id="transferenciaTable">
+                            <thead>
+                                <tr>
+                                    <th>Patrimonio</th>
+                                    <th>Modelo</th>
+                                    <th>Número de Série</th>
+                                    <th>Imei Um</th>
+                                    <th>Imei Dois</th>
+                                    <th>Siape / Setor</th>
+                                    <th>Nome</th>
+                                    <th>Estado</th>
+                                    <th>Localizção</th>
+                                    <th>Defeito</th>
+                                    <th>Observação</th>
+                                    <th>Data</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Aqui serão inseridos os dados do banco -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="menu" class="menu-lateral-direito conteudo-escondido">
+                <a href="/alterar_senha">Alterar Senha</a>
+                <a href="/adicionar_usuario">Adicionar Usuário</a>
+            </div>
+
+        </div>
+    <script src="{{ url_for('static', filename='script/script_menu.js') }}"></script>
+    <script src="{{ url_for('static', filename='script/script_consulta.js') }}"></script>
+</body>
+</html>

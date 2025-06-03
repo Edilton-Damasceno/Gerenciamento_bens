@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alterar Senha</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style_adicionar_alterar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/flash_style.css') }}">
+
+</head>
+<body>
+    <div class="cabecalho">
+        <a href="/cadastro">Transferência</a>
+        <a href="/consulta">Consulta</a>
+    </div>
+    <a href="#" data-form-id="menu" onclick="mostrarConteudo(this); return false;">
+        <img src="{{ url_for('static', filename='menu.png') }}" alt="Minha Imagem" class="menu" width="30" height="20">
+    </a>
+    <div class="conteudo-wrapper">
+
+        <div class="conteudo-principal">
+            <h3>Alterar Senha</h3>
+            <br>
+            <form id="meu-form" action = "http://localhost:9090/alterar_senha" method="POST" enctype = "multipart/form-data">
+
+                <label class = "negri" for="usuario_rede">Usuário de Rede:</label>
+                <input type="text" id="usuario_rede" name="usuario_rede" required>
+
+                <label class = "negri" for="senha_atual">Senha atual:</label>
+                <input type="password" id="senha_atual" name="senha_atual" required>
+
+                <label class = "negri" for="nova_senha">Nova senha:</label>
+                <input type="password" id="nova_senha" name="nova_senha" required>
+
+                <input id= "btn_enviar" type="submit" value="Alterar">
+
+                {% block content %}
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                      {% if messages %}
+                        {% for category, message in messages %}
+                          <div class="base-alert {{ category }}" role="alert">
+                            {{ message  | safe }}
+                          </div>
+                        {% endfor %}
+                      {% endif %}
+                    {% endwith %}
+                {% endblock %}
+            </form>
+        </div>
+        <div class="lista_transferencia"></div>
+        <div id="menu" class="menu-lateral-direito">
+            <a href="/alterar_senha">Alterar Senha</a>
+            <a href="/adicionar_usuario">Adicionar Usuário</a>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script/script_menu.js') }}"></script>
+</body>
+</html>

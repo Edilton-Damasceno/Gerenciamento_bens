@@ -1,0 +1,36 @@
+/* static/custom.css */
+.base-alert {
+ position: fixed; /* Posicionamento fixo para manter a posição na tela */
+ top: 60px; /* Espaçamento do topo */
+ right: 30px; /* Espaçamento da direita */
+ padding: 0.75rem 1.25rem;
+ margin-bottom: 0; /* Remova o espaçamento inferior padrão */
+ border: 1px solid transparent;
+ border-radius: 0.25rem;
+ z-index: 10000; /* Garanta que a mensagem fique acima de outros elementos */
+}
+
+/* Outras classes de estilo para diferentes tipos de mensagens */
+.notice {
+ color: #18603a;
+ background-color: #d5f1de;
+ border-color: #c4ebd1;
+}
+
+.info {
+ color: #1b508f;
+ background-color: #d6ebff;
+ border-color: #c6e2ff;
+}
+
+.error {
+ color: #772b35;
+ background-color: #fadddd;
+ border-color: #f8cfcf;
+}
+
+.warning {
+ color: #815c15;
+ background-color: #feefd0;
+ border-color: #fde9bd;
+}
