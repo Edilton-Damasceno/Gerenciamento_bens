@@ -4,7 +4,7 @@ Solução em Flask para registrar informações adicionais de bens móveis, auto
 
 ## Visão Geral
 
-Este sistema permite que os usuários gerenciem bens móveis, cadastrando detalhes como número de patrimônio, modelo, número de série, IMEIs, responsável/setor, estado do bem, localização, defeitos e observações. Uma funcionalidade chave é a capacidade de registrar essas informações e, em seguida, automatizar a transferência desses bens no sistema SDA (Sistema de Distribuição de Ativos - nome presumido) utilizando a biblioteca Playwright para interação web. O sistema também mantém um banco de dados local (SQLite) para persistência dos dados e logs de transferência.
+Este sistema permite que os usuários gerenciem bens móveis, cadastrando detalhes como número de patrimônio, modelo, número de série, IMEIs, responsável/setor, estado do bem, localização, defeitos e observações. Uma funcionalidade chave é a capacidade de registrar essas informações e, em seguida, automatizar a transferência desses bens no sistema SDA (Sistema de Distribuição de Ativos) utilizando a biblioteca Playwright para interação web. O sistema também mantém um banco de dados local (SQLite) para persistência dos dados e logs de transferência.
 
 ## Funcionalidades Principais
 
